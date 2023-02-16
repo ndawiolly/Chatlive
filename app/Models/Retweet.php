@@ -11,17 +11,15 @@ class Retweet extends Model
     protected $table= 'retweets';
     protected $primary = 'id';
     protected $fillable = [
-        'id',
         'post_id',
-        'poster_name',
-        'retweet_post'
+        'user_id',
     ];
 
     public function post() {
-        return $this->belongsTo(User_post::class);
+        return $this->hasOne(User_post::class,'id','post_id');
     }
 
     public function user() {
-        return $this->belongsTo(User::class,'user_id','id');
+        return $this->hasOne(User::class,'id', 'user_id');
     }
 }

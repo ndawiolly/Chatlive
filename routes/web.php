@@ -20,4 +20,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/addComment/{id}', [CommentsController::class, 'addComment'])->where('id','[0-9]+')->name('create_comment');
 Route::post('/addLikes/{id}', [LikesController::class, 'addLikes'])->where('id','[0-9]+')->name('like_post');
-Route::post('/retweet', [RetweetController::class, 'retweetPost'])->where('id', '[0-9]+')->name('retweet_post');
+Route::post('/retweet/{id}', [RetweetController::class, 'retweetPost'])->where('id', '[0-9]+')->name('retweet_post');

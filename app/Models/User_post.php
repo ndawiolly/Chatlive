@@ -28,4 +28,7 @@ class User_post extends Model
     public function likes() {
         return $this->hasMany(Likes::class,'post_id');
     }
+    public function retweets(){
+        return $this->hasMany(Retweet::class, 'post_id','id');
+    }
 }
