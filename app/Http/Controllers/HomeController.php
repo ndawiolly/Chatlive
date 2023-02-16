@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Retweet;
 use App\Models\User_post;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,8 @@ class HomeController extends Controller
         return view(
             'home',
             [
-                'posts'=> $user_posts
+                'posts'=> $user_posts,
+                'retweets'=> Retweet::all()
             ]
         );
     }

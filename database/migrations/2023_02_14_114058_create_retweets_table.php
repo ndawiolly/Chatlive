@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('retweets', function (Blueprint $table) {
             $table->id();
-            $table->string('post_id');
-            $table->string('poster_name');
-            $table->string('retweet_post');
+            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('post_id')->references('id')->on('user_posts')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

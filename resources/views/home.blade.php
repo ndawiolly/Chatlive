@@ -83,9 +83,9 @@
                         </div>
                     </div>
                 </div>
-
+                {{-- Retweets --}}
+                @include('partials.retweets')
                 {{-- second column --}}
-
                 @forelse ($posts as $post)
                     <div class="col-12 col-md-8 py-2" id="myposts">
                         <div class="card p-2">
@@ -127,8 +127,15 @@
                                             </div>
                                         </div>
                                         {{-- retweet --}}
+                                        <form action="{{ route('retweet_post', $post->id) }}" method="post">
+                                            @csrf
+                                            <button class="btn btn-transparent" type="submit" name="rtw" >
 
-                                            <i class="fas text-primary fa-retweet"> </i>
+                                                <i class="fas text-primary fa-retweet  @foreach ($post->retweets as $retweet)
+                                                    {{ $retweet->user_id == Auth::user()->id ? 'text-danger' : '' }} @endforeach
+                                            "> </i> {{ $post->retweets->count() }}
+                                            </button>
+                                        </form>
 
                                         {{-- like post --}}
                                         <form action="{{ route('like_post', $post->id) }}" method="post">
@@ -143,17 +150,10 @@
                                             </button>
                                         </form>
 
-
-                                        <i class="fa text-primary fa-street-view">0</i>
-                                        <i class="fa text-primary fa-share-square"></i>
-
                                     </div>
                                 </div>
 
                             </div>
-
-
-
                             <div class="card-body">
 
                                 <div class="accordion accordion-flush" id="accordionFlushExample">
